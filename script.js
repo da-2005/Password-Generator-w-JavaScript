@@ -1,16 +1,16 @@
-let lowerCase = "abcdefghijklmnopqrstuvwxyz";
-let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let specialChars = "!@#$^&%*()+=-[]{}|:<>?,.";
-let numbers = "1234567890";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var specialChars = "!@#$^&%*()+=-[]{}|:<>?,.";
+var numbers = "1234567890";
 
-let pwd = "";
-let lowerSelection = false;
-let upperSelection = false;
-let specialSelection = false;
-let numberSelection = false;
+var pwd = "";
+var lowerSelection = false;
+var upperSelection = false;
+var specialSelection = false;
+var numberSelection = false;
 
 function generate() {
-    let confirmLength = "";
+    var confirmLength = "";
 
     while (isNaN(confirmLength) || confirmLength < 8 || confirmLength > 128) {
         confirmLength = prompt("What length would you like the password to be? (Between 8 to 128 characters)");
@@ -41,9 +41,28 @@ function generate() {
         }
     }
 
-     let characters = "";
-     characters += (lowerSelection ? lowerCase : '');
-     characters += (upperSelection ? upperCase : '');
-     characters += (specialSelection ? specialChars : '');
-     characters += (numberSelection ? numbers : '');
+    var characters = '';
+    characters += (lowerSelection ? lowerCase : '');
+    characters += (upperSelection ? upperCase : '');
+    characters += (specialSelection ? specialChars : '');
+    characters += (numberSelection ? numbers : '');
+
+    pwd = password(confirmLength, characters);
+
+    document.getElementById("password").innerHTML = pwd;
+}
+
+function password( i, characters) {
+    var pwd = '';
+    for (var i = 0; i < 1; ++i ) {
+        pwd += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    return pwd;
+}
+
+function copied() {
+    document.getElementById("password").select();
+    document.execCommand("copy");
+    alert("The password has been copied to your clipboard!");
 }
