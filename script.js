@@ -18,4 +18,32 @@ function generate() {
             break;
         }
     }
+
+    if (confirmLength) {
+        if (confirm("Would you like to use lowercase characters?") == true) {
+            lowerSelection = true
+        }
+
+        if (confirm("Would you like to use uppercase characters?") == true) {
+            upperSelection = true
+        }
+
+        if (confirm("Would you like to use special characters?") == true) {
+            specialSelection = true;
+        }
+
+        if(confirm("Would you like to use numerical characters?") == true) {
+            numberSelection = true
+        }
+
+        if (lowerSelection === false && upperSelection === false && specialSelection === false && numberSelection === false) {
+            alert("At least one character type must be selected.")
+        }
+    }
+
+     let characters = "";
+     characters += (lowerSelection ? lowerCase : '');
+     characters += (upperSelection ? upperCase : '');
+     characters += (specialSelection ? specialChars : '');
+     characters += (numberSelection ? numbers : '');
 }
